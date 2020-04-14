@@ -8,5 +8,75 @@
 
 <body>
 
+<h2> 04/14/2020 </h2>
+<h3> Trying out 2D pathlines</h3>
+<br>
+
+<h3>Attempt 1 - coloured by inject point (4 pts), ribbon width 0.1, pathline length 20 timestepsteps, reinjection every timestep, 50fps</h3>
+<p>Ribbon seems too thin, and some of the colours are difficult to see clearly</p>
+<video width="1280" height="960" controls>
+  <source src="./ribbon/first_0p1Ribbon_20track_1inject._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<br><br>
+<h3>Attempt 2 - coloured by inject point (4 pts), ribbon width 0.2, pathline length 10 timesteps, reinjection every timestep, 100fps</h3>
+<p>Ribbons are easier to see, but maybe they are too short or there are not enough of them. Somewhat easier to distinguish recirculation patterns</p>
+<video width="1280" height="960" controls>
+  <source src="./ribbon/second_0.2Ribbon_10track_1inject._100fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<br><br>
+<h3>Attempt 3 - coloured by inject point (4 pts), ribbon width 0.2, pathline length 1200 timesteps (one cycle), reinjection every timestep, 100fps</h3>
+<p>This gets very dense and occluded, but maybe useful for looking at larger scale patterns, may be more useful if colour coded by outlet </p>
+<video width="1280" height="960" controls>
+  <source src="./ribbon/third_0p2Ribbon_1200track_1inject._100fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<br><br>
+<h3>Attempt 4 - one color with 10 inject points, ribbon width 0.2, pathline length 20 timestepsteps, reinjection every timestep, 100fps. Trying new orientation</h3>
+<p>The new orientation helps to see that recirulation zone that is close to the right outlet. Not sure what the most anatomically correct view would be Maybe easier to see overall/bulk motion here because only one color is used. Seems still to be too 'busy' </p>
+<video width="1280" height="960" controls>
+  <source src="./ribbon/fifth_eed10_inject2_20track._100fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<br><br>
+<h3>Attempt 5 - colored by inject point (3 points), ribbon width 0.3, pathline length 50 timesteps, reinjection every timestep, 100fps. </h3>
+<p>Tried with less colours, still seems busy, colour coding by inject point does not seem to help much? Probably makes more sense to colour code by outlet which is a next step... </p>
+<video width="1280" height="960" controls>
+  <source src="./ribbon/six_ribbon0p3_inject1_50track._100fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<br><br>
+<h3>Attempt 6.1 - single colour with 4 inject points, ribbon width 0.3, pathline length 10 timesteps, reinjection every timestep, opacity 0.9, 100fps. </h3>
+<p>I think this is the best one so far with respect to communicating the flow patterns. In general, still feels very busy but I think this gives me the best sense of the impingement and recirculaiton zones</p>
+<video width="1280" height="960" controls>
+  <source src="./ribbon/seven_mono_ribbon0p3_inject1_track10_0p9opacity._100fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<br><br>
+<h3>Attempt 6.2 - same as above but coloured by inject point </h3>
+<p> Comparing this to the previous video is a good example of a case where colour coding can be distracting. It is much more difficult to get a sense of the flow from this video even though all other parameters are identical.</p>
+<video width="1280" height="960" controls>
+  <source src="./ribbon/seven_clr_samewclr._100fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<br><br>
+<h3>Attempt 6.3 - same as above but longer traces (100 timesteps) </h3>
+<p>With the coloured injection points, the longer pathlines seem to help to get a beter sense of the flow, but I think single coloured is the better of the two. I also want to play aroind with colour coding based on outlet, so that is a next step.
+<video width="1280" height="960" controls>
+  <source src="./ribbon/seven_longer._100fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
 </body>
 </html>
