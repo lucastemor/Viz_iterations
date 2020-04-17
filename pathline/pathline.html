@@ -8,6 +8,50 @@
 
 <body>
 
+<br><br><br>
+<h2>04/15/2020 Pathline Iterations</h2>
+<br>
+
+<h3>2 cycles each</h3>
+
+
+<h3>Attempt 1 - 1D streamline, single colour. Inject 20 points every 5 timesteps, line length 2 timesteps </h3>
+<p> Somewhat easy to see jet inflow but after that can't really get a sense of recirculation, as with some of the ribbons, can get a sense of the 'chaotic' nature of theflow but not much else. Particles are maybe too sparse, not long enough, or perhaps too thin. </p>
+<video width="1280" height="960" controls >
+  <source src="./lines/first_line_2track_seed20_5inject._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+
+<h3>Attempt 2 - 1D streamline, single colour. Inject 20 points every 2 timesteps, line length 5 timesteps </h3>
+<p> Slightly easier to make out impingement and some recirculation, but compared to the ribbon there are sitll some features that are not easy to identify. Perhaps this could be becasue there are no depth cues..  </p>
+<video width="1280" height="960" controls >
+  <source src="./lines/second_line_5track_seed20_2inject._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<h3>Attempt 3 - added width (2) to lines, single colour. Inject 20 points every 3 timesteps, line length is 1 timetep </h3>
+<p> Thought using these small 'tubes' and adjusting the lighting/background might help with some depth cues, this is somewhat apparent in this animation but I think it is more difficult to discern flow patterns now, things seem to look more chaotic at a first glance. This might be because I did not track pathline tails, and/or maybe lines are too short? Though this does seem to give a stronger sense of the 'hostile' dynamics that are present in the sac (especially when the second cycle starts) that I don't think is evident from the longer lines or ribbons. I am starting to think maybe ribbons and longer path lengths are good for understanding more 'global' flow features, and smaller particles like this are better for communicating more local features (this seems to require really intently staring at one area and ignoring everything else) </p>
+<video width="1280" height="960" controls >
+  <source src="./lines/third_tubeWidth2_length0p3_3inject_20seed._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<h3>Attempt 4 - ray tracing 25 points per pixel, pathlines width 1, injected every 5 timestep, trail of 10 timesteps,1.5 lightscale </h3>
+<p> This rendering style really helps to provide depth cues, it is much easier to get a sense of the flow because of this. Could have made the material of the aneurysm a bit less specular and slightly more opaque as it slightly distracts me from the flow. The texture is still a bit noisy, but a better render would have taken a lot more time, even this slightly over 24 hours, using OSPray in paraview, maybe could have been faster in blender. </p>
+<video width="1280" height="960" controls >
+  <source src="./lines/fourth_spp25_width1_track10_inject5_1p5lightscale._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+
+
+
+
+<br><br><br>
 <h2> 04/14/2020 Trying out 2D pathlines</h2>
 <br>
 
