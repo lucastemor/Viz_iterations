@@ -18,6 +18,33 @@
 Your browser does not support the video tag.
 </video>
 
+<h3>Attempt 2 - 2 cycles, inject 10 points every timestep, track for 10 timesteps</h3>
+<p> The tracking/labelling of each point is not perfect but seems to perfom okay in general (seems to break down the most during each cycle's peak).. Does not seem to handle continuously injecting points very well. Right now I am computing pathlines from a set of points and then recomputing them for animation so I think there might be some computational error between the two calculations which is causing incorrect labelling for some of the points. Going to try manually animaitng the original pathlines as a next step, but some visualizations using this method are shown below.  </p>
+<video width="1280" height="960" controls >
+  <source src="./colouredOutlet/second_track10_1inject_1width._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<h3>Attempt 3 - 2 cycles, inject 10 points every timestep, track for 20 timesteps, line width of 2</h3>
+<p> Just playing around with some of the variables. It is quite clear to see the two distinct flow regions that eventually flow out of either outlet, but it is possible that other features of the flow are less clear in this representation. For example, it is difficult to get a sense of depth/recirculation of the flow going into the screen. This may because of the lighting scheme, perhaps less brightness/more shading/depth cues can help this. Furthermore, the mislabelling of some of the outflows might be misleading.   </p>
+<video width="1280" height="960" controls >
+  <source src="./colouredOutlet/second_track10_1inject_1width._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<h3>Attempt 4 - 2 cycles, inject 10 points every timestep, track for 20 timesteps, ribbon width 0.2</h3>
+<p> Same visualization as above jsut trying out this ribboin style representation from before. ...   </p>
+<video width="1280" height="960" controls >
+  <source src="./colouredOutlet/second_track10_1inject_1width._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<h3>Attempt 5 - Some static images of completely computed pathlines, 10 points injected every timestep over 2 cycles. </h3>
+
+<p> These images are cross sections of the sac clipped parallel to the view of the screen </p>
+<img src = 'still1_opacity0p2_first.png' width = "1280" height = "960">
+
 
 
 <br><br><br>
