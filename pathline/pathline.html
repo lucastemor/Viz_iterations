@@ -34,7 +34,7 @@ Your browser does not support the video tag.
 
 
 <h3>Attempt 4 - 2 cycles, inject 10 points every timestep, track for 20 timesteps, ribbon width 0.2</h3>
-<p> Same visualization as above jsut trying out this ribboin style representation from before. ...   </p>
+<p> Same visualization as above jsut trying out this ribbon style representation from before. ... It is very apparent here that the tracking breaks down about 1/3 into the cycle (this animation only for one cycle). This representation not good until approach is refined.   </p>
 <video width="1280" height="960" controls >
   <source src="./colouredOutlet/second_track10_1inject_1width._50fps.mp4" type="video/mp4">
 Your browser does not support the video tag.
@@ -42,9 +42,17 @@ Your browser does not support the video tag.
 
 <h3>Attempt 5 - Some static images of completely computed pathlines, 10 points injected every timestep over 2 cycles. </h3>
 
-<p> These images are cross sections of the sac clipped with a plane parallel to the view of the screen </p>
-<img src = './colouredOutlet/still1_opacity0p2_first.png' width = "1280" height = "960" >
+<p> These images are cross sections of the sac clipped with a plane parallel to the view of the screen. First one rendered normally (OpenGL) with line width = 1 and opacity = 0.2. We can see recirculation zone in the bottom left. We would expect there to be a second recirculation zone on the right side of the jet but this isn't visible here, perhaps because of the position of the clipping plane  </p>
+<img src = './colouredOutlet/still1_opacity0p2_first.png' width = "1280">
 
+<p> The three images below were rendered using OSPray in paraview and show the effect of varying line width. Each was generated with 100 samples per pixel. The first one shows line width of 0.1. The representation looks too dense. </p>
+<img src = './colouredOutlet/still2_raycast_0p1width.png' width = "1280">
+
+<p>Below is line width = 0.01. This representation is too sparse, it is difficult to see the recirculation zone as before</p>
+<img src = './colouredOutlet/still3_raycast_0p01width.png' width = "1280">
+
+<p>Below is line width = 0.05. This seems to be the best static representation, it shows the recirculation zone, and the two distinct regions, balancing occlusion and sparsity. Would like to try this with a better clip plane position that can show more about the recirculation on the right side. </p>
+<img src = './colouredOutlet/still4_ray_0p5width.png' width = "1280">
 
 
 <br><br><br>
