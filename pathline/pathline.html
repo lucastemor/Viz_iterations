@@ -12,17 +12,27 @@
 <h2>04/24/2020 Color Coding by Outlet</h2>
 <p> The old approach did not fully as the particle tracer in paraview deviated from the precomputed pathlines (even when inject points and frequency are identical). This new approach just manually animates the precomputed pathlines, and seems to work:
 
-<h3>Attempt 1 - 2 cycles, inject 10 points every timestep, track for 40 timesteps</h3>
-<p> Preliminary animation to test out pipeline/process... </p>
+<h3>Attempt 1 - 2 cycles, inject 10 points every timestep, track for all steps</h3>
+<p> Preliminary animation to test out manual pathline animation. The outflow appears to be correctly labelled, but particles are not disappearing and this becomes too occluded very quicklt. Need a way to animate particles like the paricle to pahtline filter in paraview </p>
 <video width="1280" height="960" controls >
-  <source src="./colouredOutlet/500pts_inject0_40track._30fps.mp4" type="video/mp4">
+  <source src="./colouredOutlet/fifth_1width._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<h3>Attempt 2 - 2 cycles, inject 10 points every timestep, track for 10 steps, line width 1.5</h3>
+<p> The first completely successful animation! Ended up having to automate animation keyframes to cutoff individual particle paths both before and after a range of timesteps to only show a snapshot (in this case 10 timesteps) of the complete computed path</p>
+<video width="1280" height="960" controls >
+  <source src="./colouredOutlet/sixth_track10_seed10_inject1_1p5width._50fps.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 
 
-
-
-
+<h3>Attempt 3 - 2 cycles, inject 10 points every timestep, track for 10 steps, line width 0.9, rendered as tubes </h3>
+<p> Improving on the previous animation, using only two colours now for the left and right outflow, rendering lines as tubes to get a better sense of depth and recirculaion. </p>
+<video width="1280" height="960" controls >
+  <source src="./colouredOutlet/seventh_samplespp10_0p9width._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 
 
 
