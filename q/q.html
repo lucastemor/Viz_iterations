@@ -10,8 +10,8 @@
 <br><br><br>
 <h2>05/01/2020 Colour by narrow:broadband ratio</h2>
 
-<h3>Preliminary Visualization</h3>
-<p> Adapted from the sonification project, we now take the sum of power contributed from the narrowband harmonics of a single FFT trace of spectrogram and divide it by its interpolated FFT power falloff. The closer a value is to 1,the more 'harmonic' its FFT (i.e., the more peaks it has woth respect to the smoothed interpolated falloff) at that point in time. Tried also taking the ratio of total narrowband to total power, and the results are similar. In the visualization below, we can see that most of the harmonic spectrogram regions come from that T junciton shaped region along the bottom. The spectorgram in the sac is mostly broadband, except for slightly downstream from the neck, where we see some banded structrues, consistent with what we get when we look at the actual spectrograms (at the bottom of this page). This is limited by 36 timesteps, as it currently matches the time resolution of the spectrograms. Also the paraview filter that extracts connected surfaces maynot be the best for this - if any two points are touching they are considered one surface which may not be the case (eg., if two blobs are coming into close contact), but in general this seems to be an okay approximation as the colouring seems to identify where the 'harmonic' structures are reletively quickly without having to probe around and look at local spectrograms. Still only rendering individual points, haven't mapped to the original surfaces yet. Threshold=1</p>
+<h3>Prototype Visualization</h3>
+<p> Adapted from the sonification project, we now take the sum of power contributed from the narrowband harmonics of a single FFT trace of spectrogram and divide it by its interpolated FFT power falloff. The closer a value is to 1,the more 'harmonic' its FFT (i.e., the more power its peaks have with respect to the smoothed interpolated falloff) at that point in time. Tried also taking the ratio of total narrowband to total power, and the results are similar. In the visualization below, we can see that most of the harmonic spectrogram regions come from that T junciton shaped region along the bottom. The spectorgram in the sac is mostly broadband, except for slightly downstream from the neck, where we see some banded structrues, consistent with what we get when we look at the actual spectrograms (at the bottom of this page). This is limited by 36 timesteps, as it currently matches the time resolution of the spectrograms. Also the paraview filter that extracts connected surfaces maynot be the best for this - if any two points are touching they are considered one surface which may not be the case (eg., if two blobs are coming into close contact), but in general this seems to be an okay approximation as the colouring seems to identify where the 'harmonic' structures are reletively quickly without having to probe around and look at local spectrograms. Still only rendering individual points, haven't mapped to the original surfaces yet. Threshold=1</p>
 
 <video width="1280" height="960" controls >
   <source src="./q_and_spectro/c53/thresh1_ratio._1fps.mp4" type="video/mp4">
@@ -26,7 +26,8 @@ Your browser does not support the video tag.
 Your browser does not support the video tag.
 </video>
 
-<h3>Comparing 3 cases spectrogrm, Q-criterion, pathlines </h3>
+<br><br>
+<h2>Comparing 3 cases spectrogrm, Q-criterion, pathlines </h2>
 <p>All from the same location (ACA). Q-criterion threshold at 0.5 for all. Pathlines are seeded with 5 points injected every timestep and tracked for 10 timesteps </p>
 
 <h3>c0053</h3>
