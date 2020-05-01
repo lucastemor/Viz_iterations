@@ -7,6 +7,27 @@
 </head>
 <body>
 
+<br><br><br>
+<h2>05/01/2020 Colour by narrow:broadband ratio</h2>
+
+<h3>Preliminary Visualization</h3>
+<p> Adapted from the sonification project, we now take the sum of power contributed from the narrowband harmonics of a single FFT trace of spectrogram and divide it by its interpolated FFT power falloff. The closer a value is to 1,the more 'harmonic' it's spectrogram is at that point in time. Tried also taking the ratio of total narrowband to total power, and the results are similar. In the visualization below, we can see that most of the harmonic spectrogram regions come from that T junciton shaped region along the bottom. The spectorgram in the sac is broadband, but is mostly broadband, except for slightly downstream from the neck, where we see some banded structrues, consistent with what we get when we look at the actual spectrograms. Threshold 1</p>
+
+<video width="1280" height="960" controls >
+  <source src="./q_and_spectro/c53/thresh1_ratio._1fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<p>mostly sac here, threshhold slightly lower here, 0.75</p>
+
+<video width="1280" height="960" controls >
+  <source src="./q_and_spectro/c53/ratio_thresh0p75._1fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+
 
 <br><br><br>
 <h2>04/24/2020 Q-criterion and Spectrograms </h2>
@@ -46,12 +67,14 @@ Your browser does not support the video tag.
 <img src = './q_and_spectro/c53/sac5.png' width = "1280">
 
 <h3>Prototype of spectrogram & q-isosurfacce visualization</h3>
-<p>It is apparent that different Q-isosurfaces have different spectral content. Using the paraview connectivity filter, we can identify groups of q-isosurfaces that are connected. For each group, we can take its points and compute their local spectrogram. Now, we need a way to visualzie some property of the spectrogram on the isosurfaces themselves to be able to show local variations. As a first pass at this, borrowing from the previous sonification project, I compute the sope of the interpolated power fall off of a spectrogram's FFT. The idea is that slopes closer to 0 indicate the flow is more broadband, and stteper slopes are more narrowband. The taking 36 timesteps of Q-criterion isosurfaces and roughly mapping them to the 36 timesteps in a spectrogram we can make the following pipeline: 1. compute q-criterion isosurfaces. 2. Get connected regions 3. For each connected region, take its points and compute their spectrogram. 4. Extract the spectrogram timestep that corresponds to the current frame and interpolate its slope. More broadband spectrograms will have a slope closer to zero.  </p>
+<p>It is apparent that different Q-isosurfaces have different spectral content. Using the paraview connectivity filter, we can identify groups of q-isosurfaces that are connected. For each group, we can take its points and compute their local spectrogram. Now, we need a way to visualzie some property of the spectrogram on the isosurfaces themselves to be able to show local variations. As a first pass at this, borrowing from the previous sonification project, I compute the slope of the interpolated power fall off of a spectrogram's FFT. The idea is that slopes closer to 0 indicate the flow is more broadband, and stteper slopes are more narrowband. The taking 36 timesteps of Q-criterion isosurfaces and roughly mapping them to the 36 timesteps in a spectrogram we can make the following pipeline: 1. compute q-criterion isosurfaces. 2. Get connected regions 3. For each connected region, take its points and compute their spectrogram. 4. Extract the spectrogram timestep that corresponds to the current frame and interpolate its slope. More broadband spectrograms will have a slope closer to zero.  </p>
 
 <video width="1280" height="960" controls >
   <source src="./q_and_spectro/c53/spectro_pointsize5_sphere._1fps.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
+
+
 
 
 </body>
