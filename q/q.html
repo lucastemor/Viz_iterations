@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<h1> Q Viz</h1>
+<h1>Q Viz</h1>
 
 </head>
 <body>
@@ -11,7 +11,7 @@
 <h2>05/01/2020 Colour by narrow:broadband ratio</h2>
 
 <h3>Preliminary Visualization</h3>
-<p> Adapted from the sonification project, we now take the sum of power contributed from the narrowband harmonics of a single FFT trace of spectrogram and divide it by its interpolated FFT power falloff. The closer a value is to 1,the more 'harmonic' it's spectrogram is at that point in time. Tried also taking the ratio of total narrowband to total power, and the results are similar. In the visualization below, we can see that most of the harmonic spectrogram regions come from that T junciton shaped region along the bottom. The spectorgram in the sac is broadband, but is mostly broadband, except for slightly downstream from the neck, where we see some banded structrues, consistent with what we get when we look at the actual spectrograms. Threshold 1</p>
+<p> Adapted from the sonification project, we now take the sum of power contributed from the narrowband harmonics of a single FFT trace of spectrogram and divide it by its interpolated FFT power falloff. The closer a value is to 1,the more 'harmonic' its FFT (i.e., the more peaks it has woth respect to the smoothed interpolated falloff) at that point in time. Tried also taking the ratio of total narrowband to total power, and the results are similar. In the visualization below, we can see that most of the harmonic spectrogram regions come from that T junciton shaped region along the bottom. The spectorgram in the sac is mostly broadband, except for slightly downstream from the neck, where we see some banded structrues, consistent with what we get when we look at the actual spectrograms (at the bottom of this page). This is limited by 36 timesteps, as it currently matches the time resolution of the spectrograms. Also the paraview filter that extracts connected surfaces maynot be the best for this - if any two points are touching they are considered one surface which may not be the case (eg., if two blobs are coming into close contact), but in general this seems to be an okay approximation as the colouring seems to identify where the 'harmonic' structures are reletively quickly without having to probe around and look at local spectrograms. Still only rendering individual points, haven't mapped to the original surfaces yet. Threshold=1</p>
 
 <video width="1280" height="960" controls >
   <source src="./q_and_spectro/c53/thresh1_ratio._1fps.mp4" type="video/mp4">
@@ -19,12 +19,125 @@ Your browser does not support the video tag.
 </video>
 
 
-<p>mostly sac here, threshhold slightly lower here, 0.75</p>
+<p>mostly sac here, threshhold slightly lower, 0.75</p>
 
 <video width="1280" height="960" controls >
   <source src="./q_and_spectro/c53/ratio_thresh0p75._1fps.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
+
+<h3>Comparing 3 cases spectrogrm, Q-criterion, pathlines </h3>
+<p>All from the same location (ACA). Q-criterion threshold at 0.5 for all. Pathlines are seeded with 5 points injected every timestep and tracked for 10 timesteps </p>
+
+<h3>c0053</h3>
+<p>Seen this one already, but visualized here under different parameters for comparison</p>
+
+<b>Spectrograms at diferent locations</b>
+
+<img src="./ACA/c53/sac_global.png" style="width:100%">
+<img src="./ACA/c53/neck.png" style="width:100%">
+<img src="./ACA/c53/above neck.png" style="width:100%">
+<img src="./ACA/c53/above neck2.png" style="width:100%">
+<img src="./ACA/c53/right_side.png" style="width:100%">
+<img src="./ACA/c53/left_side.png" style="width:100%">
+
+
+<b>Q-Criterion</b>
+<p>24 fps, slower than others because this one has the most activity</p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c53/0p5thresh._24fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+<br>
+
+<b>Pathline</b>
+<p></p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c53/seed5_inject1_1width._50fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<br><br><br>
+
+<h3>c0012</h3>
+<p>This sac has a very complex gemoetry, have included two different views, in general I think the second one works better</p>
+
+<b>Spectrograms at diferent locations</b>
+<p>Minimal broadband content in the sac spectrogram</p>
+
+
+<img src="./ACA/c12/sac_spectro.png" style="width:100%">
+<img src="./ACA/c12/sac1.png" style="width:100%">
+<img src="./ACA/c12/sac2.png" style="width:100%">
+
+<b>Q-Criterion</b>
+<p></p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c12/q1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+<p></p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c12/q2.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+<br>
+
+<b>Pathline</b>
+<p></p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c12/p1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+<p></p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c12/p2.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+<br>
+
+<h3>c0060</h3>
+<p></p>
+
+<b>Spectrograms at diferent locations</b>
+<p></p>
+
+
+<img src="./ACA/c60/sac_global.png" style="width:100%">
+<img src="./ACA/c60/inflow.png" style="width:100%">
+<img src="./ACA/c60/neck.png" style="width:100%">
+<img src="./ACA/c60/aboveneck.png" style="width:100%">
+<img src="./ACA/c60/middleish.png" style="width:100%">
+<img src="./ACA/c60/closertobleb.png" style="width:100%">
+<img src="./ACA/c60/bleb.png" style="width:100%">
+<img src="./ACA/c60/leftout1.png" style="width:100%">
+<img src="./ACA/c60/leftout2.png" style="width:100%">
+
+
+<b>Q-Criterion</b>
+<p></p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c60/q1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<br>
+<br>
+
+<b>Pathline</b>
+<p></p>
+<video width="1280" height="960" controls >
+  <source src="./ACA/c60/p1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+
+<br><br><br>
 
 
 
@@ -73,7 +186,6 @@ Your browser does not support the video tag.
   <source src="./q_and_spectro/c53/spectro_pointsize5_sphere._1fps.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
-
 
 
 
