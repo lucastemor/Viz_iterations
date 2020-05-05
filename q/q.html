@@ -2,13 +2,53 @@
 <html>
 <head>
 
-<h1>Q Viz</h1>
+<h1>Spectrogram Cases</h1>
 
 </head>
 <body>
 
 <br><br><br>
-<h2>05/01/2020 Colour by narrow:broadband ratio</h2>
+<h2>05/05/2020 C0060 outflow mixing and particle age</h2>
+
+<h3>Outflow</h3>
+<p> Seeding 5 points every timestep, tracking for 10 timesteps, Width 2. This is somewhat better than the single coloured visualization below, especially after peak systole where recirculation is much easier to see. </p>
+
+<video width="1280" height="960" controls >
+  <source src="./q_and_spectro/c60/outflow1" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+
+<p> Seeding 5 points every timestep, tracking for 20 timesteps, Width 3. Trying wider and longer tubes. Creates more occlusion but definately communicates the bulk circulaiton better. Still difficult to get a sense of what is happening at peak systole. </p>
+
+<video width="1280" height="960" controls >
+  <source src="./q_and_spectro/c60/outflow2" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+
+<p> Seeding 5 points every timestep, tracking for 20 timesteps. Ribbon width 0.1 . This is too occluded and the lighting scheme makes it difficult to perceive depth (Actually I would say this is an issue case with all of these, but this one more so). I think the ribbons give a better sense of the bulk/global dynamics but occlude much more than pathlines/tubes, hiding other information. </p>
+
+<video width="1280" height="960" controls >
+  <source src="./q_and_spectro/c60/outflow3" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+
+<br>
+
+<h3>Particle Age on Exit</h3>
+<p>Precomputing particle age on exit. Trying to get a sense of which pathlines entering the sac are staying there for the longest. Mapping to colourscale and opacity (redundant). Perhaps here the opacity and/or the dark colour on the background blends in too much making it difficult to perceive the 'younger' pathlines. Although this is the goal, we are losing too much information on the bulk flow characteristics and often the more solid lines just look like random movement. Another issue is that this is biased towards particles at the end of the cycle when the flow is generally moving slower. For example, a particle injected around peak systole may move along a long recirculating path, but will do so more quickly, and therefore have a shorter age on exit than a particle injected later in the cycle that may move less distance (or not even recirculate) but reside in the sac for longer. Perhaps using total path length may help to get a better sense of this, also maybe considering different types of recirculating points as in that paper. </p>
+
+<video width="1280" height="960" controls >
+  <source src="./q_and_spectro/c60/age1" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<br>
+
+
+<br><br><br>
+<h2>05/01/2020 Q Isosurface Colour by narrow:broadband ratio</h2>
 
 <h3>Prototype Visualization</h3>
 <p> Adapted from the sonification project, we now take the sum of power contributed from the narrowband harmonics of a single FFT trace of spectrogram and divide it by its interpolated FFT power falloff. The closer a value is to 1,the more 'harmonic' its FFT (i.e., the more power its peaks have with respect to the smoothed interpolated falloff) at that point in time. Tried also taking the ratio of total narrowband to total power, and the results are similar. In the visualization below, we can see that most of the harmonic spectrogram regions come from that T junciton shaped region along the bottom. The spectorgram in the sac is mostly broadband, except for slightly downstream from the neck, where we see some banded structrues, consistent with what we get when we look at the actual spectrograms (at the bottom of this page). This is limited by 36 timesteps, as it currently matches the time resolution of the spectrograms. Also the paraview filter that extracts connected surfaces maynot be the best for this - if any two points are touching they are considered one surface which may not be the case (eg., if two blobs are coming into close contact), but in general this seems to be an okay approximation as the colouring seems to identify where the 'harmonic' structures are reletively quickly without having to probe around and look at local spectrograms. Still only rendering individual points, haven't mapped to the original surfaces yet. Threshold=1</p>
