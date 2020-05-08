@@ -7,6 +7,80 @@
 </head>
 <body>
 
+
+<br><br><br>
+<h2>05/08/2020 C0060 pathlines</h2>
+
+<p>Visualizations that show (1) line similarity, (2) pathline length, and (3) particle age</p>
+
+<h3>1. Line similarity</h3>
+<p>The goal here is to reduce the visual cluter created by pathlines that trace out similar trajectories. In other words, looking to find the most 'representitive' pathlines. This approach takes a set of pathlines, and for each pathline computes its similarity in 3d to a sample pathline from the set. The simialrity is measured for each trajectory using the dynamic time warping (DTW algorithm). A dtw distance of 0 means that two lines are identical, and larger values mean that there is more distance between the lines at their respective discrete points (in this case, timesteps). The example below shows the distribution of 'similarity' for precomputed pathlines from case 60, we see it is somewhat bimodal which most likely captures the pathlines that go directly to the two outlets. To visualize the different groups of similarity, the pathlines are binned based on their similarity measures. The example below shows this using a bin spacing of 200 (eyeballed from the distribution). Once the are binned, one pathline is taken from each bin as a 'representitive' sample of that pathline bin. The example below shows how we go from a large set of computeed pathlines to 10 representitive samples. </p>
+
+<p>First, here are all the pathlines. Computed for 2 cycles, seed 10 points every timestep for one cycle. The colours represent the bins described above</p>
+<img src="./ACA/c60/line_computations/cluster/still_allpts.png" style="width:75%">
+
+<p>Here is the distribution of DTW distances between each pathline and a sample pathline form the set. Note that it is somewhat bimodal, which I think shows the pathlines with similar trajectories that flow directly to outlets</p>
+<img src="./ACA/c60/line_computations/cluster/inject10_dtw_hist.png" style="width:75%">
+
+
+<p>Now we bin the distribution of similarities and take 1 sample from each bin. In the image below we see one sample per bin (as represented with the discrete colour map, which, by the way, I am not sure how useful the colour coding is yet). There are 10 bins that are 200 units apart  </p>
+<img src="./ACA/c60/line_computations/cluster/still1_10lines_fromall.png" style="width:75%">
+
+<br>
+<p>and tried a render with wider tubes -- there is less dead space, which i find makes it easier to follow each unique path (but maybe this is too wide)
+<img src="./ACA/c60/line_computations/cluster/still1_10lines_fromall_width10.png" style="width:75%">
+
+<p>Very preliminary - but here is a pathline animation of the above case that colours lines by their respective bins. The eventual goal here would be to only render a certain number of lines from each bin to reduce clutter but maintain representation of the flow. We can see in this video that groups of pathlines with similar trajectories are coloured the same (i.e., they are in the same bin), so a next step is to figure out how to only render a representitive sample from each bin (i.e., the dynamic version of the images above). </p>
+
+<video width="1280" height="960" controls >
+  <source src="./ACA/c60/line_computations/cluster/bins10_track10_inject10_width3._30fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<br>
+<br><br>
+<b>Questions to explore further</b>
+<p>Is this result more representitive of the flow than just simply taking a spatially stratified random sample of pathlines? <br> Are there better ways of computing pathline similarity - different algorithms, different ways of dividing the geometry (i.e., similarity is computed between entire pathlines, how would this change locally)? <br> Right now we are just taking the first pathline form each bin and rendering it, is there a better way of choosing more 'representitive' pathlines from each bin? <br>How does bin selection impact the representation of the flow? Can the process of manually binning pthlines be replaced by some clustering algorithm?  <br>And of course, how does this look for other cases? </p>
+
+<h3>2. Total Line Length</h3>
+<p>The goal with this is to try and emphasize pathlines in recirculation areas. Initialy, I tried doing this with particle age (below) but I found that particles that linger in the sac towards the end of the cycle (i.e., after the chaotic flows have calmed down) tend to bias the emphasis towards the end of the cycle. The idea here is to emphasize longer pathlines in order to better communicate regions of recirculation, and emphasize less the pahlines that simply enter the sac and immeadiately exit. The examples below are shown for the same pathlines as above, with precomputed lengths</p>
+
+<p>First, here are all the pathlines computed and coloured by their length  (as a side note these visualizations aren't very useful for, as the pathlines that move close to the wall occlude everythin else, but I tried playing with opacity and the reslts are somewhat interesting (below))</p>
+<img src="./ACA/c60/line_computations/length/all_lines_width2.png" style="width:75%">
+
+<p>And here is the distribution of pathline lengths</p>
+<img src="./ACA/c60/line_computations/length/inject10_length_hist.png" style="width:75%">
+
+<p>Based on this, I binned the pathlines into 'long' and 'short' groups using a cutoff length of 350 (just over the distribution mean, which in retrospect maybe was not the best idea, as there is a large group of pathlines that just continuously exit towards the left outlet, which probably contribute to this skew). The animation below shows short pathlines greyed out and opaque, with longer ones solid and yellow. I found that removing short lines completely can make it difficult to make sense of the overall movement of the flow. </p>
+
+<video width="1280" height="960" controls >
+  <source src="./ACA/c60/line_computations/length/inject10_binnedlength250_opacity0p4_track10_longwidth3_shortwidth2._30fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<p>In general, I am not sure that this (in its current form) helps to reduce occlusion/to make sense of the flow during peak systole, the pathlines are still very chaotic at this point, but fairly easy to understand after. I haven't had much chance to play around with different bins/mapping strategies, etc.. </p>
+
+<p>This is a static visualization I did, which shows all precomputed pathlines. They are very opaque in order to get a sense of bulk movement. The colour scale here shows length. We see almost like a 'hole' of long pathlines in the center of the sac suggesting recirculation</p>
+<img src="./ACA/c60/line_computations/length/opacity0p05.png" style="width:75%">
+
+
+<h3>3. Particle Age at Exit</h3>
+<p> Similar to above, the goal here is to better emphasize recirculation areas. Here, we precompute the age (in number of timesteps) of each pathline when it exits the domain. I chose to precompute this and assign each pathline a static age value because I thought there would be too mch happening at once if pathlines changed dynamically based on thier age. As mentioend, I don't think this is the best approach, as it seems to heavily skew towards particles that reside in the sac after peak systole when the flow has calmed down. </p>
+
+<p>here is the distribution of pathline age at exit</p>
+<img src="./ACA/c60/line_computations/age/agedist.png" style="width:75%">
+
+<p>The idea of this animation is the same as above. I chose an age cutoff of 150 under which I render pathlines as grey and opaque, and over which they are solid and yellow. The results seem pretty similar to above, though both are preliminary, and I haven't done too much optimization of the visualization parameters yet. Note also, there is a more preliminary version of this below</p>
+
+<video width="1280" height="960" controls >
+  <source src="./ACA/c60/line_computations/age/thresh150_loweropactiy0p04track10_widthupper3_widthlowr2._30fps.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<p>Similar to above, here is a static render of all opaque pathlines, coloured by age </p>
+<img src="./ACA/c60/line_computations/age/allpts_opacity0p02.png" style="width:75%">
+
+
 <br><br><br>
 <h2>05/05/2020 C0060 outflow mixing and particle age</h2>
 
